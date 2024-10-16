@@ -1,14 +1,10 @@
 body {
     background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
 }
 
 h2 {
     margin-bottom: 20px;
-}
-
-canvas {
-    max-width: 100%;
-    height: auto;
 }
 
 #upload-form {
@@ -16,6 +12,11 @@ canvas {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
 }
 
 .modal-content {
@@ -31,4 +32,29 @@ canvas {
 
 .modal-footer {
     background-color: #f8f9fa;
+}
+
+/* Responsividade para telas menores que 768px */
+@media (max-width: 768px) {
+    #upload-form {
+        margin: 0 10px; /* Ajuste para centralizar o formulário em telas pequenas */
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    /* Ajustar o tamanho do gráfico */
+    canvas {
+        width: 100%;
+        height: auto;
+    }
 }

@@ -5,13 +5,21 @@ document.getElementById('upload-form').addEventListener('submit', function(event
     const file = fileInput.files[0];
 
     if (file) {
-        Papa.parse(file, {
-            complete: function(results) {
-                const data = results.data;
-                prepareInitialGraph(data);
-            },
-            header: true
-        });
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            // Pegando a primeira planilha
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+
+            // Convertendo a planilha para um JSON
+            const excelData = XLSX.utils.sheet_to_json(firstSheet);
+
+            // Passa os dados convertidos para gerar o gráfico
+            prepareInitialGraph(excelData);
+        };
+        reader.readAsArrayBuffer(file);
     }
 });
 
